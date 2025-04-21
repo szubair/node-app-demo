@@ -11,8 +11,7 @@ pipeline {
         }
         stage('Checkout Code') {
             steps {
-		echo "checkout code"
-                // git branch: 'staging-loyaltri', credentialsId: '1a925f29-a4bb-49e5-aac8-4588317ad816', url: 'https://haseeb-docme@bitbucket.org/docmephpdeveloper/loyaltri-ui.git'
+                git branch: 'alpha-loyaltri', credentialsId: '1a925f29-a4bb-49e5-aac8-4588317ad816', url: 'https://haseeb-docme@bitbucket.org/docmephpdeveloper/loyaltri-ui.git'
             }
         }
         stage('Install Dependencies') {
@@ -22,10 +21,10 @@ pipeline {
         }
         stage('Build') {
             steps {
-                echo "CI=false npm run build:prod" 
+                sh 'unset CI && npm run build:dev'
             }
         }
-	stage('Upload Artidfacts'){
+	stage('Upload Artifacts'){
 		steps {
 		sh 'pwd; ls -l'
                 echo "${env.BUILD_NUMBER} ${env.ENV_NAME}"
