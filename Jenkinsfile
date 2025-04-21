@@ -28,6 +28,7 @@ pipeline {
 	stage('Upload Artidfacts'){
 		steps {
 		sh 'pwd; ls -l'
+                echo "${env.BUILD_NUMBER} ${env.ENV_NAME}"
 		}
 	}
 
