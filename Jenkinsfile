@@ -27,7 +27,7 @@ pipeline {
         }
 	stage('Upload Artifacts'){
 		steps {
-		sh 'pwd; ls -l build'
+		sh 'pwd; ls -l ./build'
                 echo "${env.BUILD_NUMBER} ${env.ENV_NAME}"
 		}
 	}
