@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Install Dependencies') {
             steps {
-                echo 'npm install --force' // Install dependencies
+                sh 'npm install --force' // Install dependencies
             }
         }
         stage('Build') {
