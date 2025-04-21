@@ -11,22 +11,23 @@ pipeline {
         }
         stage('Checkout Code') {
             steps {
-                git branch: 'alpha-loyaltri', credentialsId: '1a925f29-a4bb-49e5-aac8-4588317ad816', url: 'https://haseeb-docme@bitbucket.org/docmephpdeveloper/loyaltri-ui.git'
+		echo "git checkout"
+                //git branch: 'alpha-loyaltri', credentialsId: '1a925f29-a4bb-49e5-aac8-4588317ad816', url: 'https://haseeb-docme@bitbucket.org/docmephpdeveloper/loyaltri-ui.git'
             }
         }
         stage('Install Dependencies') {
             steps {
-                sh 'npm install --force' // Install dependencies
+                echo 'npm install --force' // Install dependencies
             }
         }
         stage('Build') {
             steps {
-                sh 'unset CI && npm run build:dev'
+                echo 'unset CI && npm run build:dev'
             }
         }
 	stage('Upload Artifacts'){
 		steps {
-		sh 'pwd; ls -l'
+		sh 'pwd; ls -l build'
                 echo "${env.BUILD_NUMBER} ${env.ENV_NAME}"
 		}
 	}
