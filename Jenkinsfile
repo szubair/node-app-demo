@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage('Clean Workspace') {
             steps {
-               sh 'deleteDir()' // Clean the workspace
+               deleteDir() // Clean the workspace
             }
         }
         stage('Checkout Code') {
