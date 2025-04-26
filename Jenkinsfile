@@ -15,18 +15,20 @@ pipeline {
         }
         stage('Install Dependencies') {
             steps {
-                sh 'npm install --force' // Install dependencies
+                sh 'npm install' // Install dependencies
             }
         }
+/*
         stage('Build') {
             steps {
                 sh 'unset CI && npm run build:dev'
             }
         }
+*/
 	stage('Upload Artifacts'){
 		steps {
-			sh 'pwd; ls -l; ls -l ./build'
-                	echo "${env.BUILD_NUMBER} ${env.ENV_NAME}"
+		sh 'pwd; ls -l; ls -l ./build'
+                echo "${env.BUILD_NUMBER} ${env.ENV_NAME}"
 		}
 	}
 
