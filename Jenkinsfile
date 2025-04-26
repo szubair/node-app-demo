@@ -10,7 +10,8 @@ pipeline {
         }
         stage('Checkout Code') {
             steps {
-                git branch: 'alpha-loyaltri', credentialsId: '1a925f29-a4bb-49e5-aac8-4588317ad816', url: 'https://haseeb-docme@bitbucket.org/docmephpdeveloper/loyaltri-ui.git'
+                //git branch: 'alpha-loyaltri', credentialsId: '1a925f29-a4bb-49e5-aac8-4588317ad816', url: 'https://haseeb-docme@bitbucket.org/docmephpdeveloper/loyaltri-ui.git'
+                git branch: 'master', credentialsId: 'gitaccess-node-app-demo', url: 'https://github.com/szubair/node-app-demo.git'
             }
         }
         stage('Install Dependencies') {
