@@ -2,15 +2,6 @@ pipeline {
 	agent {
         	label 'Loyaltri-Node'
 	}
-    	parameters {
-   		gitParameter type: 'PT_BRANCH',
-                 	name: 'A_BRANCH',
-                 	branchFilter: 'origin/(.*)',
-                 	defaultValue: 'master',
-                 	description: 'Choose a branch to checkout',
-                 	selectedValue: 'DEFAULT',
-                 	sortMode: 'DESCENDING_SMART'
-	}
 	stages {
         stage('Clean Workspace') {
             steps {
@@ -19,17 +10,19 @@ pipeline {
         }
         stage('Checkout Code') {
             steps {
-		git branch: params.A_BRANCH, url: 'https://github.com/szubair/node-app-demo.git'
+                echo "User selected branch is: ${params.branchName.split('/'.last())}"
+		//git branch: params.A_BRANCH, url: 'https://github.com/szubair/node-app-demo.git'
             }
         }
         stage('Install Dependencies') {
             steps {
-                sh 'npm install' // Install dependencies
+                echo "blank for now"
+                //sh 'npm install' // Install dependencies
             }
         }
 	stage('Upload Artifacts'){
 		steps {
-		sh 'pwd; ls -l; ls -l ./build'
+		//sh 'pwd; ls -l; ls -l ./build'
                 echo "${env.BUILD_NUMBER} ${env.ENV_NAME}"
 		}
 	}
