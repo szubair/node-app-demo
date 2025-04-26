@@ -10,7 +10,7 @@ pipeline {
         }
         stage('Checkout Code') {
             steps {
-                echo "User selected branch is: ${params.branchName.split('/'.last())}"
+                echo "User selected branch is: ${params.branchName.split('/').last()}"
 		//git branch: params.A_BRANCH, url: 'https://github.com/szubair/node-app-demo.git'
             }
         }
