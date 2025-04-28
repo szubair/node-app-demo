@@ -10,13 +10,15 @@ pipeline {
         }
         stage('Download Artifacts') {
             steps {
-                echo "blank for now"
+            echo "Artifact: build-${ENV_NAME}-${BUILD_NUMBER}.tgz"
+            withAWS(credentials: 'storage-build-packages', region: 'us-east-1'){
+		s3Download(file: "build-${ENV_NAME}-${BUILD_NUMBER}.tgz, bucket:'build-package-testing', path:'build-package-testing/', force:true)
+            	}
             }
         }
 	stage('Deploy app'){
 		steps {
 		sh 'pwd; ls -l'
-                echo "${env.BUILD_NUMBER} ${env.ENV_NAME}"
 		}
 	}
     }
