@@ -21,6 +21,11 @@ pipeline {
 		sh 'pwd; ls -l'
 		}
 	}
+	stage('TEST app'){
+		steps {
+		echo "is the app running!"
+		}
+	}
     }
     post {
         always {
