@@ -1,0 +1,29 @@
+pipeline {
+	agent {
+        	label 'Loyaltri-Node'
+	}
+	stages {
+        stage('Clean Workspace') {
+            steps {
+               deleteDir() // Clean the workspace
+            }
+        }
+        stage('Download Artifacts') {
+            steps {
+                echo "blank for now"
+            }
+        }
+	stage('Deploy app'){
+		steps {
+		sh 'pwd; ls -l'
+                echo "${env.BUILD_NUMBER} ${env.ENV_NAME}"
+		}
+	}
+    }
+    post {
+        always {
+            // Clean up workspace after build
+            cleanWs()
+        }
+    }
+}
