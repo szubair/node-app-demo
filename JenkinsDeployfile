@@ -38,7 +38,7 @@ pipeline {
 		steps {
 		script {
 		  echo "Check - is the app running!"
-		  sh 'sh check-site.sh'
+		  sh 'pwd; ls -l; sh check-site.sh'
 		}
 		}
 	}
