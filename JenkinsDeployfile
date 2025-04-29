@@ -29,6 +29,7 @@ pipeline {
 		sh "pwd;ls -l;whoami"
 		withCredentials([sshUserPrivateKey(credentialsId: '9339375a-d1d6-42e6-94f0-482b07d7080b', keyFileVariable: 'SSH_KEY')]) {
 			sh "scp -o StrictHostKeyChecking=no -i ${SSH_KEY} build-${ENV_NAME}-${BUILD_NUMBER}.tgz ${REMOTE_USER}@${REMOTE_HOST}:${TEMP_PATH}"
+			sh "ssh -o StrictHostKeyChecking=no -i ${SSH_KEY} ${REMOTE_USER}@${REMOTE_HOST} -- ls -l ${TEMP_PATH}"
 			}
 		}
 		}
