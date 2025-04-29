@@ -36,7 +36,16 @@ pipeline {
 	}
 	stage('TEST app'){
 		steps {
-		echo "is the app running!"
+		echo "Check - is the app running!"
+		sh """
+		RESULT=`curl -is http://13.201.164.185:81/ | head -1 | awk '{print $2}'`
+		if test $RESULT -eq 200; then
+		  echo "We're Good! Result is $RESULT - OK!"
+		else
+		  echo "ERROR: $RESULT"
+		  exit 1
+		fi
+		"""
 		}
 	}
     }
