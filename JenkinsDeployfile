@@ -3,11 +3,6 @@ pipeline {
         	label 'Loyaltri-Node'
 	}
 	stages {
-        stage('Clean Workspace') {
-            steps {
-               deleteDir() // Clean the workspace
-            }
-        }
         stage('Download Artifacts') {
             steps {
             echo "Artifact: build-${ENV_NAME}-${BUILD_NUMBER}.tgz"
