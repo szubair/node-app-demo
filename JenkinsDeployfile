@@ -21,7 +21,7 @@ pipeline {
                 REMOTE_USER = 'ubuntu'
                 REMOTE_HOST = '13.201.164.185'
                 REMOTE_PATH = '/var/www/demo_cd'
-                TEMP_PATH = '/home/ubuntu/cd_zipfiles'
+                TEMP_PATH = '/home/ubuntu/cd_zipfiles/'
             }
             steps {
                 script {
