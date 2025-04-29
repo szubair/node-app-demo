@@ -16,9 +16,27 @@ pipeline {
             	}
             }
         }
-	stage('Deploy app'){
-		steps {
-		sh 'pwd; ls -l'
+	stage('Deploy app') {
+		environment{
+                REMOTE_USER = 'ubuntu'
+                REMOTE_HOST = '13.201.164.185'
+                REMOTE_PATH = '/var/www/demo_cd'
+                TEMP_PATH = '/home/ubuntu/cd_zipfiles'
+            }
+            steps {
+                script {
+		echo "Artifact: build-${ENV_NAME}-${BUILD_NUMBER}.tgz"
+		withCredentials([sshUserPrivateKey(credentialsId: '9339375a-d1d6-42e6-94f0-482b07d7080b', keyFileVariable: 'SSH_KEY')]) {
+			sh 'pwd; ls -l'
+			sh """
+			// Connect into the remote server!!
+                        sh """
+                        ssh -o StrictHostKeyChecking=no -i ${SSH_KEY} ${REMOTE_USER}@${REMOTE_HOST} << 'EOF'
+                            sudo pwd; ls -l /var/
+			EOF
+			"""
+			}
+		}
 		}
 	}
 	stage('TEST app'){
